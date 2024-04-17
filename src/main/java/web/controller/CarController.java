@@ -8,9 +8,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import web.service.CarService;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Controller
 public class CarController {
 
@@ -21,11 +18,8 @@ public class CarController {
     }
 
     @GetMapping(value = "/cars")
-    public String getCars(ModelMap model, @RequestParam(value = "count",defaultValue = "5") int init) {
-        List<String> cars = new ArrayList<>();
-        cars.add(carService.getNumberOfCars(init).toString());
-        model.addAttribute("cars", cars);
+    public String getCars(ModelMap model, @RequestParam(value = "count",defaultValue = "5") int count) {
+        model.addAttribute("cars",carService.getNumberOfCars(count) );
         return "cars";
-
     }
 }
